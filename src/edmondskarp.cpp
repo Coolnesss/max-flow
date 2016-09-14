@@ -1,5 +1,6 @@
 #include <vector>
 #include <queue>
+#include <iostream>
 
 #include "edmondskarp.h"
 typedef long long ll;
@@ -20,7 +21,7 @@ ll EdmondsKarp::max() {
 bool EdmondsKarp::bfs() {
     
     queue<ll> q;
-    vector<char> visited;
+    vector<bool> visited;
     visited.resize(n+1);
     
     // Start with node 1
@@ -32,10 +33,9 @@ bool EdmondsKarp::bfs() {
         q.pop();
         visited[current] = true;
         
-        for(int i = 0; i < n; i++) {
-            
+        for(int i = 1; i <= n; i++) {            
             // Visit only nodes where path exists            
-            if (!visited.at(i) && reverse.at(current).at(i) > 0) {
+            if (!visited.at(i) && g.at(current).at(i) > 0) {
                 q.push(i);
                 visited[i] = true;
             }            

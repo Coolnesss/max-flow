@@ -18,7 +18,7 @@ int main() {
     cin >> n >> m;
     g.resize(n+1);
     
-    for(int i = 0; i < n; i++) {
+    for(int i = 1; i <= n; i++) {
         g[i].resize(n+1);
     }
     
