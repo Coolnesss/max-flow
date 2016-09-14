@@ -23,9 +23,11 @@ int main() {
     }
     
     for(int i = 0; i < m; i++) {
-        ll a,b,c;
+        ll a, b, c;
         cin >> a >> b >> c;
         g[a][b] = c;
+        // Add reverse zero-capacity edges
+        g[b][a] = 0;
     }
     
     EdmondsKarp edmondsKarp(n, m, g);
