@@ -2,8 +2,17 @@
 #include <vector>
 #include <algorithm>
 #include "edmondskarp.h"
+#include <chrono>
+
 typedef long long ll;
 using namespace std;
+using namespace std::chrono;
+
+milliseconds time() {
+    return duration_cast< milliseconds >(
+        system_clock::now().time_since_epoch()  
+    );
+}
 
 int main() {
     // Optimizations
@@ -30,6 +39,5 @@ int main() {
         g[b][a] = 0;
     }
     
-    EdmondsKarp edmondsKarp(n, m, g);
-    cout << edmondsKarp.max() << endl;
+   
 }
