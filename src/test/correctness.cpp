@@ -25,6 +25,15 @@ vector<vector<ll>> createGraph(ll input[]) {
     return g;
 }
 
+TEST_CASE( "Edmonds Karp works on trivial example", "[edmondskarp]" ) {
+    ll n = 2;
+    ll m = 1;
+    ll smallInput[] = {2, 1, 1, 2, 2};
+    
+    EdmondsKarp ek(n, m, createGraph(smallInput));
+    REQUIRE(ek.max() == 2);
+}
+
 TEST_CASE( "Edmonds Karp works on small example", "[edmondskarp]" ) {
     ll n = 4;
     ll m = 5;
