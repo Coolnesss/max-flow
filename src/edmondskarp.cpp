@@ -2,8 +2,8 @@
 #include <queue>
 #include <iostream>
 #include <algorithm>
-
 #include "edmondskarp.h"
+
 typedef long long ll;
 using namespace std;
 
@@ -11,6 +11,7 @@ EdmondsKarp::EdmondsKarp(ll n, ll m, vector<vector<ll>> g) :n(n), m(m), g(g) {
     lastPath.resize(n+1);
 }
 
+// Find the maximum flow in the graph
 ll EdmondsKarp::max() {
     ll answer = 0;
     
