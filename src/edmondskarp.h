@@ -1,9 +1,8 @@
 #ifndef edmondskarp_h
 #define edmondskarp_h
 
-#include <vector>
+#include "data-structures/vector.h"
 typedef long long ll;
-using namespace std;
 
 class EdmondsKarp {
 

@@ -3,18 +3,13 @@
 typedef long long ll;
 #include "catch.hpp"
 #include "../edmondskarp.h"
-#include <vector>
+#include "../data-structures/vector.h"
 
 // Initialize graph required for algorithm
 vector<vector<ll>> createGraph(ll input[]) {
     ll n = input[0];
     ll m = input[1];
-    vector<vector<ll>> g;
-    
-    g.resize(n+1);
-    for(int i = 0; i <= n; i++) {
-        g[i].resize(n+1);
-    }
+    vector<vector<ll>> g(n+1, vector<ll>(n+1));
     
     // Same logic as when input is read from cin
     for(int i = 4; i < m*3+2; i += 3) {

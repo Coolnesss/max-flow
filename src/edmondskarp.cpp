@@ -1,15 +1,12 @@
-#include <vector>
 #include <queue>
 #include <iostream>
 #include <algorithm>
 #include "edmondskarp.h"
+#include "data-structures/vector.h"
 
 typedef long long ll;
-using namespace std;
 
-EdmondsKarp::EdmondsKarp(ll n, ll m, vector<vector<ll>> g) :n(n), m(m), g(g) {
-    lastPath.resize(n+1);
-}
+EdmondsKarp::EdmondsKarp(ll n, ll m, vector<vector<ll>> g) :n(n), m(m), g(g), lastPath(n+1) {}
 
 // Find the maximum flow in the graph
 ll EdmondsKarp::max() {
@@ -24,7 +21,7 @@ ll EdmondsKarp::max() {
             ll next = lastPath[current];
             
             // Check capacity of edge from next to current, set pathmin to it if smaller
-            pathMin = min(g[next][current], pathMin);
+            pathMin = std::min(g[next][current], pathMin);
         }
         
         // Traverse path again and mutate the graph by decreasing capacities by the minimum previous capacity
@@ -43,9 +40,8 @@ ll EdmondsKarp::max() {
 
 bool EdmondsKarp::bfs() {
     
-    queue<ll> q;
-    vector<bool> visited;
-    visited.resize(n+1);
+    std::queue<ll> q;
+    vector<bool> visited(n+1);
     
     for(int i = 0; i <= n; i++) lastPath[i] = -1;    
     
@@ -60,7 +56,7 @@ bool EdmondsKarp::bfs() {
         
         for(int i = 1; i <= n; i++) {            
             // Visit only nodes where path exists
-            if (!visited.at(i) && g.at(current).at(i) > 0) {             
+            if (!visited[i] && g[current][i] > 0) {             
                 q.push(i);
                 visited[i] = true;
                 lastPath[i] = current;
