@@ -28,7 +28,7 @@ TEST_CASE( "Vector retains elements", "[vector]" ) {
 
 TEST_CASE("Vector of vectors retains elements", "[vector]" ) {
     int n = 2;
-    vector<vector<int>> v(n);
+    vector<vector<int>> v(n, vector<int>(n));
     
     for(int i = 0; i < n; i++) {
        for(int j = 0; j < n; j++) {

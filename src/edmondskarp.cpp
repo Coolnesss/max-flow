@@ -54,7 +54,7 @@ bool EdmondsKarp::bfs() {
         q.pop();
         visited[current] = true;
         
-        for(int i = 1; i <= n; i++) {            
+        for(int i = 1; i < g[current].size(); i++) {            
             // Visit only nodes where path exists
             if (!visited[i] && g[current][i] > 0) {             
                 q.push(i);
