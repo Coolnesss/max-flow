@@ -2,6 +2,7 @@
 #define vector_h
 typedef long long ll;
 
+// General use dynamic array
 template <class T> class vector {
     
     private:
