@@ -12,10 +12,20 @@ template <class T> class queue {
     
   public:
   
-    //Constructor with value
+    // Constructor with value
     queue(T value) {
         _head = node<T>(value);
         _tail = nullptr;
+    }
+    
+    // Destructor
+    ~queue() {
+        node<T> *temp = _head;
+        if (_head == nullptr) return;
+        while(temp->next) {
+            temp = temp->next;
+            delete temp;
+        }
     }
     
     // Constructor without value
@@ -45,6 +55,7 @@ template <class T> class queue {
     T pop() {
         T temp = _head->value;
         if (_head == _tail) {
+            delete _tail;
             _head = nullptr;
             _tail = nullptr;
         } else {

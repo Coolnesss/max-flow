@@ -13,8 +13,14 @@ template <class T> class node {
         next = _next;
     }
     
+    // Destructor
+    ~node() {
+        delete next;
+    }
     // Constructor with value
-    node(T value) :value(value) {}
+    node(T value) :value(value) {
+        next = nullptr;
+    }
     
 };        
 #endif
