@@ -1,7 +1,7 @@
-#include <queue>
 #include <iostream>
 #include <algorithm>
 #include "edmondskarp.h"
+#include "data-structures/queue.h"
 #include "data-structures/vector.h"
 
 typedef long long ll;
@@ -40,7 +40,7 @@ ll EdmondsKarp::max() {
 
 bool EdmondsKarp::bfs() {
     
-    std::queue<ll> q;
+    queue<ll> q;
     vector<bool> visited(n+1);
     
     for(int i = 0; i <= n; i++) lastPath[i] = -1;    
