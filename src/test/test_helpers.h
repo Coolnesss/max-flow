@@ -2,6 +2,44 @@
 #define TEST_HELPER_H
 
 #include "../data-structures/vector.h"
+#include <string>
+#include <iostream>
+
+static vector<vector<ll>> readInput(const std::string fileName) {
+    // Use file as input stream
+    
+    std::freopen(fileName.c_str(), "r", stdin);
+
+    // Optimizations
+    std::ios_base::sync_with_stdio(0);
+    std::cin.tie(0);
+    std::cout.tie(0);
+    
+    ll n, m;
+    
+    // Read input
+    std::cin >> n >> m;
+    vector<vector<ll>> g(n+1, vector<ll>(n+1));
+    
+    for(int i = 0; i < m; i++) {
+        ll a, b, c;
+        std::cin >> a >> b >> c;
+        g[a][b] = c;
+        // Add reverse zero-capacity edges
+        g[b][a] = 0;
+    }
+    fclose(stdin);
+    return g;
+}
+
+static std::pair<vector<vector<ll>>, std::pair<ll,ll>> getGraph(const std::string fileName) {
+    std::freopen(fileName.c_str(), "r", stdin);
+    ll n = 0, m = 0;
+    std::cin >> n >> m;
+    
+    fclose(stdin);
+    return { readInput(fileName), { n,m }};
+}
 
 // Initialize graph required for algorithm
 static vector<vector<ll>> createGraph(ll input[]) {

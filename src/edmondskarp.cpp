@@ -50,8 +50,8 @@ bool EdmondsKarp::bfs() {
     visited[1] = true;
     
     while(!q.empty()) {
-        ll current = q.front(); 
-        q.pop();
+        ll current = q.pop();
+        
         visited[current] = true;
         
         for(int i = 1; i < g[current].size(); i++) {            
