@@ -12,3 +12,11 @@ TEST_CASE( "Ford Fulkerson works on trivial example", "[fordfulkerson]" ) {
     FordFulkerson ff(n, m, createGraph(tinyInput));
     REQUIRE(ff.max() == 2);
 }
+
+TEST_CASE( "Ford Fulkerson works on small example", "[fordfulkerson]") {
+    ll n = 4;
+    ll m = 5;
+    
+    FordFulkerson ff(n, m, createGraph(smallInput));
+    REQUIRE(ff.max() == 4);
+}

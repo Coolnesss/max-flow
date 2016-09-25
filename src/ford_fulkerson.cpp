@@ -1,5 +1,6 @@
 #include "ford_fulkerson.h"
 #include <algorithm>
+#include <iostream>
 typedef long long ll;
 
 FordFulkerson::FordFulkerson(ll n, ll m, vector<vector<ll>> g) :n(n), m(m), g(g), lastPath(n+1) {}
@@ -42,13 +43,13 @@ ll FordFulkerson::max() {
 // Depth-first search from node 1 to N
 bool FordFulkerson::dfs(ll node, vector<bool> visited) {
     if (node == n) return true;
-    
+    visited[node] = true;
+
     for(int i = 1; i < g[node].size(); i++) {
         if (!visited[i] && g[node][i] > 0) {
             lastPath[i] = node;
-            visited[i] = true;
             return dfs(i, visited);
         }
     }
-    return false;
+    return (visited[n]);
 }

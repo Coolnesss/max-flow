@@ -58,7 +58,6 @@ bool EdmondsKarp::bfs() {
             // Visit only nodes where path exists
             if (!visited[i] && g[current][i] > 0) {             
                 q.push(i);
-                visited[i] = true;
                 lastPath[i] = current;
             }            
         }
