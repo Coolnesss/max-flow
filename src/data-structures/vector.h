@@ -64,5 +64,18 @@ template <class T> class vector {
         void clear() {
             _size = 0;
         }
+
+        // Get a pointer to the beginning of the vector
+        T* begin() {
+            return array;
+        }
+
+        // Get a pointer to the end of the vector
+
+        T* end() {
+            return array + _size;
+        }
+
+
 };
 #endif

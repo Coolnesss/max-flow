@@ -42,3 +42,16 @@ TEST_CASE("Vector of vectors retains elements", "[vector]" ) {
        }       
     }
 }
+
+TEST_CASE("Vector clear sets all values to blank", "[vector]" ) {
+    vector<ll> v(10);
+
+    for(int i = 0; i < 10; i++) {
+        v[i] = 18*i;
+    }
+    v.clear();
+
+    for(auto a : v) {
+        REQUIRE(a == 0);
+    }
+}
