@@ -39,7 +39,6 @@ ll EdmondsKarp::max() {
 }
 
 bool EdmondsKarp::bfs() {
-    
     queue<ll> q;
     vector<bool> visited(n+1);
     

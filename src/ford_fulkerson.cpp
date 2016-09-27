@@ -1,6 +1,5 @@
 #include "ford_fulkerson.h"
 #include <algorithm>
-#include <iostream>
 typedef long long ll;
 
 FordFulkerson::FordFulkerson(ll n, ll m, vector<vector<ll>> g) :n(n), m(m), g(g), lastPath(n+1) {}
@@ -12,9 +11,11 @@ ll FordFulkerson::max() {
     
     while(true) {
         vector<bool> visited(n+1);
-        visited[1] = true;
-        if (!dfs(1, visited)) break;
+        for(int i = 0; i <= n; i++) lastPath[i] = -1;
+        dfs(1, visited);
         
+        if (!visited[n]) break;
+
         // The minimum capacity on the current route
         ll pathMin = 999999999;
         
@@ -25,31 +26,34 @@ ll FordFulkerson::max() {
             // Check capacity of edge from next to current, set pathmin to it if smaller
             pathMin = std::min(g[next][current], pathMin);
         }
-        
+
         // Traverse path again and mutate the graph by decreasing capacities by the minimum previous capacity
         for (ll current = n; current != 1; current = lastPath[current]) {
             ll next = lastPath[current];
-            
             g[next][current] -= pathMin;
             g[current][next] += pathMin;
         }
+        
         // Add the flow that was just discovered to the answer, i.e increase the maximum flow
         answer += pathMin;
+
+        // Clean up for next round
+        visited.clear();
+        for(int i = 0; i <= n; i++) lastPath[i] = -1;    
     }
     
     return answer;
 }
 
 // Depth-first search from node 1 to N
-bool FordFulkerson::dfs(ll node, vector<bool> visited) {
-    if (node == n) return true;
+void FordFulkerson::dfs(ll node, vector<bool> &visited) {
+    if (visited[node] || visited[n]) return;    
     visited[node] = true;
 
-    for(int i = 1; i < g[node].size(); i++) {
+    for(int i = 1; i <= n; i++) {
         if (!visited[i] && g[node][i] > 0) {
             lastPath[i] = node;
-            return dfs(i, visited);
+            dfs(i, visited);
         }
     }
-    return (visited[n]);
 }

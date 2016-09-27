@@ -1,14 +1,13 @@
-#ifndef fordfulkerson_h
-#define fordfulkerson_h
+#ifndef scalingflow_h
+#define scalingflow_h
 
 #include "data-structures/vector.h"
 typedef long long ll;
 
-class FordFulkerson {
+class ScalingFlow {
 
     public:
-        FordFulkerson(ll n, ll m, vector<vector<ll>> g);
-        
+        ScalingFlow(ll n, ll m, vector<vector<ll>> g);
         // Returns the maximum flow in the graph from node 1 to node n
         ll max();
     
@@ -17,12 +16,14 @@ class FordFulkerson {
         ll n,m;
         // Graph
         vector<vector<ll>> g;
-        // Depth-first search that finds a path from node node to node n
-        void dfs(ll node, vector<bool> &visited);
-        // Last path found by the dfs 
+        // Breath-first search that finds a flow that is atleast size 2^d
+        bool bfs(ll d);
+        // Last path found by the bfs
         vector<ll> lastPath;
         // Maximum flow so far
         ll maxFlow;
+        // Find largest capacity in garph
+        ll maxCapacity();
 };
 
 #endif

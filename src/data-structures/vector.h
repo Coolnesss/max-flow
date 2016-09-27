@@ -59,5 +59,10 @@ template <class T> class vector {
         int size() {
             return _size;    
         }
+
+        // Set all elements to zero
+        void clear() {
+            _size = 0;
+        }
 };
 #endif
