@@ -20,3 +20,31 @@ TEST_CASE( "Scaling flow works on small example", "[scalingflow]") {
     ScalingFlow sf(n, m, createGraph(smallInput));
     REQUIRE(sf.max() == 4);
 }
+
+
+TEST_CASE( "Scaling Flow works on tricky example", "[scalingflow]" ) {
+    auto graph = getGraph("test/inputs/tricky.in");
+    ll n = graph.second.first;
+    ll m = graph.second.second;
+
+    ScalingFlow sf(n, m, graph.first);  
+    REQUIRE(sf.max() == 2000000000ll);
+}
+
+TEST_CASE( "Scaling Flow works on big example", "[scalingflow]" ) {
+    auto graph = getGraph("test/inputs/big.in");
+    ll n = graph.second.first;
+    ll m = graph.second.second;
+
+    ScalingFlow sf(n, m, graph.first);  
+    REQUIRE(sf.max() == 2202243530ll);
+}
+
+TEST_CASE( "Scaling Flow works on very big example", "[scalingflow]" ) {
+    auto graph = getGraph("test/inputs/verybig.in");
+    ll n = graph.second.first;
+    ll m = graph.second.second;
+
+    ScalingFlow sf(n, m, graph.first);  
+    REQUIRE(sf.max() == 168764294ll);
+}

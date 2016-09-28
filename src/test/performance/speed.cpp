@@ -1,6 +1,7 @@
 #include <chrono>
 #include "../../edmondskarp.h"
 #include "../../ford_fulkerson.h"
+#include "../../scaling_flow.h"
 #include <functional>
 #include "../test_helpers.h"
 #include <iostream>
@@ -39,9 +40,40 @@ void trickyTest() {
     std::cout << "It took " << duration << std::endl;
 }
 
+void veryBigTest() {
+    cout << "Starting very big test" << endl;
+
+    auto graph = getGraph("test/inputs/verybig.in");
+    ll n = graph.second.first;
+    ll m = graph.second.second;
+
+    double duration = average([&] {
+        FordFulkerson ff(n,m,graph.first);
+        return ff.max();
+    }, 10);
+
+    cout << "Ford Fulkerson took " << duration << endl;
+
+    duration = average([&] {
+        EdmondsKarp ek(n,m,graph.first);
+        return ek.max();
+    }, 10);
+
+    cout << "Edmonds Karp took " << duration << endl;
+
+    duration = average([&] {
+        ScalingFlow sf(n,m,graph.first);
+        return sf.max();
+    }, 10);
+
+    cout << "Scaling flow took " << duration << endl;
+}
+
 // Test performance of algorithms
 // Output time in seconds
+
 int main() {
     trickyTest();
+    veryBigTest();
 }
 
