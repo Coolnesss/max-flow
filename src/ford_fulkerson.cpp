@@ -17,7 +17,7 @@ ll FordFulkerson::max() {
         if (!visited[n]) break;
 
         // The minimum capacity on the current route
-        ll pathMin = 999999999;
+        ll pathMin = 9999999999999ll;
         
         // Go back on path found by DFS from node n to node 1 and find minimum capacity  
         for (ll current = n; current != 1; current = lastPath[current]) {

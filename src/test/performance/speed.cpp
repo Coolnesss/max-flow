@@ -1,5 +1,6 @@
 #include <chrono>
 #include "../../edmondskarp.h"
+#include "../../ford_fulkerson.h"
 #include <functional>
 #include "../test_helpers.h"
 #include <iostream>
@@ -26,17 +27,21 @@ double average(std::function<ll()> fn, int iterations) {
     return sum / iterations;
 }
 
-// Test performance of algorithms
-// Output time in seconds
-int main() {
-    auto graph = getGraph("test/inputs/big.in");
+void trickyTest() {
+    auto graph = getGraph("test/inputs/tricky.in");
     ll n = graph.second.first;
     ll m = graph.second.second;
 
-    EdmondsKarp ek(n,m,graph.first);
+    FordFulkerson ff(n,m,graph.first);
     double duration = average([&] {
-        return ek.max();
+        return ff.max();
     }, 10);
     std::cout << "It took " << duration << std::endl;
+}
+
+// Test performance of algorithms
+// Output time in seconds
+int main() {
+    trickyTest();
 }
 
