@@ -60,7 +60,7 @@ template <class T> class vector {
             return _size;    
         }
 
-        // Set all elements to zero
+        // Clear the vector
         void clear() {
             _size = 0;
         }
@@ -76,6 +76,19 @@ template <class T> class vector {
             return array + _size;
         }
 
+        // Add an element to the end of the list. Double capacity if capacity is reached
+        void push_back(T e) {
+            if (_size == _capacity) {
+                // Double capacity, unless it is zero, then it should be increased to 1.
+                _capacity = _capacity == 0 ? 1 : _capacity * 2;
+                T* copy = new T[_capacity];
+                for(int i = 0; i < _size; i++) {
+                    copy[i] = array[i];
+                }
+                array = copy;
+            }
+            array[_size++] = e;
+        }
 
 };
 #endif

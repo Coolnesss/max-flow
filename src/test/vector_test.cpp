@@ -55,3 +55,18 @@ TEST_CASE("Vector clear sets all values to blank", "[vector]" ) {
         REQUIRE(a == 0);
     }
 }
+
+TEST_CASE("push_back allocates space dynamically and retains elements", "[vector]" ) {
+    vector<int> v;
+    int n = 20;
+    
+    for(int i = 0; i < n; i++) {
+        v.push_back(i);
+    }
+
+    REQUIRE(v.size() == 20);
+    for(int i = 0; i < n; i++) {
+        REQUIRE(v[i] == i);
+    }
+
+}
