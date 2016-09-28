@@ -3,15 +3,20 @@
 #include "edmondskarp.h"
 #include "data-structures/queue.h"
 #include "data-structures/vector.h"
+#include "data-structures/graph.h"
 
 typedef long long ll;
 
-EdmondsKarp::EdmondsKarp(ll n, ll m, vector<vector<ll>> g) :n(n), m(m), g(g), lastPath(n+1) {}
+EdmondsKarp::EdmondsKarp(Graph g) :g(g) {
+    n = g.n();
+    m = g.m();
+    lastPath = vector<ll>(n+1);
+}
 
 // Find the maximum flow in the graph
 ll EdmondsKarp::max() {
     ll answer = 0;
-    
+
     while(bfs()) {
         // The minimum capacity on the current route
         ll pathMin = 999999999;
@@ -21,15 +26,15 @@ ll EdmondsKarp::max() {
             ll next = lastPath[current];
             
             // Check capacity of edge from next to current, set pathmin to it if smaller
-            pathMin = std::min(g[next][current], pathMin);
+            pathMin = std::min(g.weights(next)[current], pathMin);
         }
         
         // Traverse path again and mutate the graph by decreasing capacities by the minimum previous capacity
         for (ll current = n; current != 1; current = lastPath[current]) {
             ll next = lastPath[current];
             
-            g[next][current] -= pathMin;
-            g[current][next] += pathMin;
+            g.weights(next)[current] -= pathMin;
+            g.weights(current)[next] += pathMin;
         }
         // Add the flow that was just discovered to the answer, i.e increase the maximum flow
         answer += pathMin;
@@ -50,14 +55,15 @@ bool EdmondsKarp::bfs() {
     
     while(!q.empty()) {
         ll current = q.pop();
-        
+
         visited[current] = true;
         
-        for(int i = 1; i < g[current].size(); i++) {            
+        for(int i = 0; i < g[current].size(); i++) {
+            ll next = g[current][i];            
             // Visit only nodes where path exists
-            if (!visited[i] && g[current][i] > 0) {             
-                q.push(i);
-                lastPath[i] = current;
+            if (!visited[next] && g.weights(current)[next] > 0) {
+                q.push(next);
+                lastPath[next] = current;
             }            
         }
     }

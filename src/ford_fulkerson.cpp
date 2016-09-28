@@ -2,7 +2,9 @@
 #include <algorithm>
 typedef long long ll;
 
-FordFulkerson::FordFulkerson(ll n, ll m, vector<vector<ll>> g) :n(n), m(m), g(g), lastPath(n+1) {}
+FordFulkerson::FordFulkerson(Graph g) :n(g.n()), m(g.m()), g(g) {
+    lastPath = vector<ll>(n+1);
+}
 
 // Maximum flow in the graph
 // Almost same as Edmonds Karp except DFS is used instead of BFS
@@ -24,14 +26,14 @@ ll FordFulkerson::max() {
             ll next = lastPath[current];
             
             // Check capacity of edge from next to current, set pathmin to it if smaller
-            pathMin = std::min(g[next][current], pathMin);
+            pathMin = std::min(g.weights(next)[current], pathMin);
         }
 
         // Traverse path again and mutate the graph by decreasing capacities by the minimum previous capacity
         for (ll current = n; current != 1; current = lastPath[current]) {
             ll next = lastPath[current];
-            g[next][current] -= pathMin;
-            g[current][next] += pathMin;
+            g.weights(next)[current] -= pathMin;
+            g.weights(current)[next] += pathMin;
         }
         
         // Add the flow that was just discovered to the answer, i.e increase the maximum flow
@@ -50,10 +52,11 @@ void FordFulkerson::dfs(ll node, vector<bool> &visited) {
     if (visited[node] || visited[n]) return;    
     visited[node] = true;
 
-    for(int i = 1; i <= n; i++) {
-        if (!visited[i] && g[node][i] > 0) {
-            lastPath[i] = node;
-            dfs(i, visited);
+    for(int i = 0; i < g[node].size(); i++) {
+        ll next = g[node][i];
+        if (!visited[next] && g.weights(node)[next] > 0) {
+            lastPath[next] = node;
+            dfs(next, visited);
         }
     }
 }
