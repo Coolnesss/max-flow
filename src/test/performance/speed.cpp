@@ -29,11 +29,10 @@ double average(std::function<ll()> fn, int iterations) {
 }
 
 void trickyTest() {
-    auto graph = getGraph("test/inputs/tricky.in");
-    ll n = graph.second.first;
-    ll m = graph.second.second;
+    cout << "Starting tricky test" << endl;
+    Graph graph = getGraph("test/inputs/tricky.in");
 
-    FordFulkerson ff(n,m,graph.first);
+    FordFulkerson ff(graph);
     double duration = average([&] {
         return ff.max();
     }, 10);
@@ -43,26 +42,51 @@ void trickyTest() {
 void veryBigTest() {
     cout << "Starting very big test" << endl;
 
-    auto graph = getGraph("test/inputs/verybig.in");
-    ll n = graph.second.first;
-    ll m = graph.second.second;
-
+    Graph graph = getGraph("test/inputs/verybig.in");
+    
     double duration = average([&] {
-        FordFulkerson ff(n,m,graph.first);
+        FordFulkerson ff(graph);
         return ff.max();
     }, 10);
 
     cout << "Ford Fulkerson took " << duration << endl;
 
     duration = average([&] {
-        EdmondsKarp ek(n,m,graph.first);
+        EdmondsKarp ek(graph);
         return ek.max();
     }, 10);
 
     cout << "Edmonds Karp took " << duration << endl;
 
     duration = average([&] {
-        ScalingFlow sf(n,m,graph.first);
+        ScalingFlow sf(graph);
+        return sf.max();
+    }, 10);
+
+    cout << "Scaling flow took " << duration << endl;
+}
+
+void hugeTest() {
+    cout << "Starting huge test" << endl;
+
+    Graph graph = getGraph("test/inputs/huge.in");
+
+    double duration = average([&] {
+        FordFulkerson ff(graph);
+        return ff.max();
+    }, 10);
+
+    cout << "Ford Fulkerson took " << duration << endl;
+
+    duration = average([&] {
+        EdmondsKarp ek(graph);
+        return ek.max();
+    }, 10);
+
+    cout << "Edmonds Karp took " << duration << endl;
+
+    duration = average([&] {
+        ScalingFlow sf(graph);
         return sf.max();
     }, 10);
 
@@ -73,7 +97,8 @@ void veryBigTest() {
 // Output time in seconds
 
 int main() {
-    trickyTest();
-    veryBigTest();
+    //trickyTest();
+    //veryBigTest();
+    hugeTest();
 }
 

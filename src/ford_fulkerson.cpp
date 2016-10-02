@@ -1,5 +1,6 @@
 #include "ford_fulkerson.h"
 #include <algorithm>
+#include <iostream>
 typedef long long ll;
 
 FordFulkerson::FordFulkerson(Graph g) :n(g.n()), m(g.m()), g(g) {
@@ -54,7 +55,7 @@ void FordFulkerson::dfs(ll node, vector<bool> &visited) {
 
     for(int i = 0; i < g[node].size(); i++) {
         ll next = g[node][i];
-        if (!visited[next] && g.weights(node)[next] > 0) {
+        if (!visited[next] && g.weights(node)[next] > 0) { 
             lastPath[next] = node;
             dfs(next, visited);
         }
