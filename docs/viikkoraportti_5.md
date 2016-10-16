@@ -4,4 +4,6 @@ Tällä viikolla tutkin erilaisia julkaisuja ja oppimateriaaleja ja yritin selvi
 
 Sen lisäksi lisäsin suorituskykytestejä muuten, ja kirjoitin testausdokumenttia. Huomasin suorituskykytestausta tehdessä, että queue-tietorakenteessani oli pahoja muistivuotoja, joten ne piti myös korjata.
 
-Kirjoittelin myös käyttöohjeen ohjelmalle.
+Kirjoitin myös käyttöohjeen ohjelmalle. Siinä kerrotaan miten testit voi ajaa, ja miten voi ajaa jollain oikealla syötteellä itselleen vastauksen.
+
+Ensi viikolla pitää myös tehdä jotain taulukoita ja diagrammeja tehokkuudesta.
