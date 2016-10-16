@@ -20,12 +20,7 @@ template <class T> class queue {
     
     // Destructor
     ~queue() {
-        node<T> *temp = _head;
-        if (_head == nullptr) return;
-        while(temp->next) {
-            temp = temp->next;
-            delete temp;
-        }
+        while(!empty()) pop(); 
     }
     
     // Constructor without value
@@ -53,15 +48,14 @@ template <class T> class queue {
     
     // Retrieve and remove head of the queue
     T pop() {
-        T temp = _head->value;
-        if (_head == _tail) {
-            delete _tail;
-            _head = nullptr;
+        T value = _head->value;
+        auto next = _head->next;
+        delete _head;
+        _head = next;
+        if (_head == nullptr) {
             _tail = nullptr;
-        } else {
-            _head = _head->next;
         }
-        return temp;
+        return value;
     }
     
     // Check if queue is empty

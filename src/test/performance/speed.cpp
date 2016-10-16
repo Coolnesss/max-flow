@@ -93,12 +93,43 @@ void hugeTest() {
     cout << "Scaling flow took " << duration << endl;
 }
 
+void completeGraphTest() {
+    cout << "Starting complete graph test" << endl;
+
+    Graph graph = generateCompleteGraph(300);
+
+    cout << "Graph done" << endl;
+/*
+    double duration = average([&] {
+        FordFulkerson ff(graph);
+        return ff.max();
+    }, 10);
+
+    cout << "Ford Fulkerson took " << duration << endl;
+*/
+    double duration = average([&] {
+        EdmondsKarp ek(graph);
+        return ek.max();
+    }, 10);
+
+    cout << "Edmonds Karp took " << duration << endl;
+
+    duration = average([&] {
+        ScalingFlow sf(graph);
+        return sf.max();
+    }, 10);
+
+    cout << "Scaling flow took " << duration << endl;
+
+}
+
 // Test performance of algorithms
 // Output time in seconds
 
 int main() {
     //trickyTest();
     //veryBigTest();
-    hugeTest();
+    //hugeTest();
+    completeGraphTest();
 }
 

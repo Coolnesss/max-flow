@@ -6,9 +6,6 @@ def rek(start, finish, amount)
     puts "#{start} 3 #{amount}"
     puts "2 #{finish} #{amount}"
     puts "3 #{finish} #{amount}"
-
-    
-
 end
 
 
