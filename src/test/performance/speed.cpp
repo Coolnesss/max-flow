@@ -99,15 +99,18 @@ void completeGraphTest() {
     Graph graph = generateCompleteGraph(300);
 
     cout << "Graph done" << endl;
-/*
+
     double duration = average([&] {
         FordFulkerson ff(graph);
-        return ff.max();
+        ll lol = ff.max();
+        cout << lol << endl;
+        return lol;
     }, 10);
 
     cout << "Ford Fulkerson took " << duration << endl;
-*/
-    double duration = average([&] {
+
+
+    duration = average([&] {
         EdmondsKarp ek(graph);
         return ek.max();
     }, 10);
@@ -120,16 +123,15 @@ void completeGraphTest() {
     }, 10);
 
     cout << "Scaling flow took " << duration << endl;
-
 }
 
 // Test performance of algorithms
 // Output time in seconds
 
 int main() {
-    //trickyTest();
-    //veryBigTest();
-    //hugeTest();
-    completeGraphTest();
+    trickyTest();
+    veryBigTest();
+    hugeTest();
+    //completeGraphTest();
 }
 

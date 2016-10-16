@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include "edmondskarp.h"
-#include "data-structures/vector.h"
+#include "data-structures/graph.h"
 
 typedef long long ll;
 using namespace std;
@@ -15,16 +15,17 @@ int main() {
     ll n, m;
     
     // Read input
+    // First nodes and edges, then each edge
     cin >> n >> m;
-    vector<vector<ll>> g(n+1, vector<ll>(n+1));
+    Graph g(n, m);
     
     for(int i = 0; i < m; i++) {
         ll a, b, c;
         cin >> a >> b >> c;
-        g[a][b] = c;
-        // Add reverse zero-capacity edges
-        g[b][a] = 0;
+        g.connect(a,b,c);
     }
+    EdmondsKarp ek(g);
+    cout << ek.max() << endl;
     
    
 }

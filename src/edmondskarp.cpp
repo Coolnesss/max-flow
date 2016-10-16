@@ -1,3 +1,4 @@
+#include <iostream>
 #include <algorithm>
 #include "edmondskarp.h"
 #include "data-structures/queue.h"
@@ -18,7 +19,7 @@ ll EdmondsKarp::max() {
 
     while(bfs()) {
         // The minimum capacity on the current route
-        ll pathMin = 999999999;
+        ll pathMin = 9999999999999ll;
         
         // Go back on path found by BFS from node n to node 1 and find minimum capacity  
         for (ll current = n; current != 1; current = lastPath[current]) {

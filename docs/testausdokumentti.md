@@ -21,7 +21,7 @@ Testasin suorituskykyä sopivilla syötteillä, joihin kuuluu satunnaisia verkko
 
 Monissa opetusmateriaaleissa (esim [tämä](http://cseweb.ucsd.edu/classes/sp11/cse202-a/lecture8-final.pdf)) neuvotaan tekemään verkko, joka vastaa suurinpiirtein `inputs`-kansion syötettä `tricky.in`. Materiaalien mukaan verkko kuvastaa FF-algoritmin pahinta tapausta, ja että algoritmi suoriutuu siinä huonosti. Ideana on, että algoritmi valitsee joka kohdassa polun, joka käyttää keskimmäistä kaarta (kuva alla on yllä mainitusta materiaalista), ja käyttää näin 10^6 syvyyshakua.
 
-![Image of Yaktocat](badexample.png)
+![Bad example](badexample.png)
 
 Huomasin kuitenkin, että mikä tahansa käytännön toteutus tuossa tapauksessa löytää helposti maksimivirtauksen vain muutamalla syvyyshaulla. Tämä johtuu siitä, että kone valitsee deterministisesti reitin, eikä sitä voi pakottaa valitsemaan huonointa reittiä joka kohdassa.
 
