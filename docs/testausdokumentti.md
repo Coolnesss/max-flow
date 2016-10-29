@@ -25,8 +25,12 @@ Monissa opetusmateriaaleissa (esim [tämä](http://cseweb.ucsd.edu/classes/sp11/
 
 Huomasin kuitenkin, että mikä tahansa käytännön toteutus tuossa tapauksessa löytää helposti maksimivirtauksen vain muutamalla syvyyshaulla. Tämä johtuu siitä, että kone valitsee deterministisesti reitin, eikä sitä voi pakottaa valitsemaan huonointa reittiä joka kohdassa.
 
-Tutustuin sitten julkaisuun [Finite Termination of “Augmenting Path” Algorithms](https://people.cs.clemson.edu/~bcdean/iterm.pdf), jossa näytetään tapa tehdä Ford-Fulkerson algoritmille pienehkö verkko, jossa algoritmin aikavaativuus on eksponentiaalinen. Tälläisiä verkkoja luo `generate.cpp`-ohjelma.
+Tutustuin sitten julkaisuun [Finite Termination of “Augmenting Path” Algorithms](https://people.cs.clemson.edu/~bcdean/iterm.pdf), jossa näytetään tapa tehdä Ford-Fulkerson algoritmille pienehkö verkko, jossa algoritmin aikavaativuus on eksponentiaalinen. Tälläisiä verkkoja luo `generate.cpp`-ohjelma. Valitettavasti en saanut sitä kunnolla toimimaan, enkä ehdi korjata sitä...
 
 Lisäksi testeistä löytyy mm. täysi verkko jossa on satunnaiset kapasiteetit, ja muutama satunnainen hyvin suuri syöte. Jokainen syöte ajetaan jokaiselle algoritmille 10 kertaa, ja ajo-ajasta otetaan keskiarvo.
 
 Suorituskykytestit voi ajaa komennolla `make -B -C src performance` projektin juuresta. Tämä kääntää algoritmit ja testit ja ajaa ne `-Ofast`-optimisaatioilla.
+
+Kuvassa algoritmien keskimääräinen suoritusnopeus satunnaisella verkolla kymmenen kerran keskiarvona. Tästä huomataan, että satunnaisella verkolla Ford-Fulkerson ja Edmonds-Karp suoriutuvat lähes yhtä hyvin. Scaling Flow sen sijaan käyttää enemmän aikaa, sillä luultavasti verkossa on vain muutama yksinkertainen polku alusta loppuun.
+
+![plot](newplot.png)

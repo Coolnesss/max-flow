@@ -43,7 +43,7 @@ void veryBigTest() {
     cout << "Starting very big test" << endl;
 
     Graph graph = getGraph("test/inputs/verybig.in");
-    
+
     double duration = average([&] {
         FordFulkerson ff(graph);
         return ff.max();
@@ -96,7 +96,7 @@ void hugeTest() {
 void completeGraphTest() {
     cout << "Starting complete graph test" << endl;
 
-    Graph graph = generateCompleteGraph(300);
+    Graph graph = generateCompleteGraph(100);
 
     cout << "Graph done" << endl;
 
@@ -132,6 +132,4 @@ int main() {
     trickyTest();
     veryBigTest();
     hugeTest();
-    //completeGraphTest();
 }
-
